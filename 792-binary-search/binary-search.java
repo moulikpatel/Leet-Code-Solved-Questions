@@ -1,13 +1,13 @@
 class Solution {
-    public int search(int[] arr, int target) {
-        int n=arr.length;
+    public int search(int[] nums, int target) {
+        int n=nums.length;
         int start=0,end=n-1;
         while(start<=end){
-            int mid=(start+end)/2;
-            if(arr[mid]==target){
+            int mid=start+(end-start)/2;
+            if(nums[mid]==target){
                 return mid;
             }
-            else if(arr[mid]>target){
+            else if(nums[mid]>target){
                 end=mid-1;
             }
             else{
