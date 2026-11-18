@@ -1,11 +1,27 @@
 class Solution {
-    int binarySearch(int start,int end,int[] arr,int target){
+    int getMin(int arr[],int n){
+        int start=0,end=n-1;
+        while(start<end){
+            if(arr[start]<=arr[end]){
+                return start;
+            }
+            int mid=start+(end-start)/2;
+            if(arr[mid]>=arr[start]){
+                start=mid+1;
+            }
+            else{
+                end=mid;
+            }
+        }
+        return start;
+    }
+    int binarySearch(int arr[],int start,int end, int n,int t){
         while(start<=end){
             int mid=start+(end-start)/2;
-            if(arr[mid]==target){
+            if(arr[mid]==t){
                 return mid;
             }
-            else if(arr[mid]>target){
+            else if(arr[mid]>t){
                 end=mid-1;
             }
             else{
@@ -15,38 +31,27 @@ class Solution {
         return -1;
     }
     public int search(int[] nums, int target) {
-        // need to implement min index approch
-        int n=nums.length; 
-        int start=0,end=n-1;
-        int minIndex=-1;
-        int result=0;
-         if(nums[start]<=nums[end]){
-               result=binarySearch(start,end,nums,target);
-               return result; 
-            }
-        while(start<=end){
-            int mid=start+(end-start)/2;
-            int prev=(mid-1+n)%n;
-            int next=(mid+1)%n;
-            if(nums[mid]<=nums[prev] && nums[mid]<=nums[next]){
-                minIndex=mid;
-                break;
-            }
-            else if(nums[mid]<nums[end]){
-                end=mid-1;
+        int n=nums.length;
+        if(n==1){
+            if(nums[0]==target){
+                return 0;
             }
             else{
-                start=mid+1;
+                return -1;
             }
         }
-        start=0;
-        end=n-1;
-        if(target>=nums[start] && target<=nums[minIndex-1]){
-            result=binarySearch(start,minIndex-1,nums,target);
+        int minElement=getMin(nums,n);
+        int index=-1;
+        if(minElement==0){
+            index=binarySearch(nums,0,n-1,n,target);
+        }
+        else if(target>=nums[0] && target<=nums[minElement-1]){
+            index=binarySearch(nums,0,minElement-1,n,target);
         }
         else{
-            result=binarySearch(minIndex,end,nums,target);
+            index=binarySearch(nums,minElement,n-1,n,target);
         }
-        return result;
+        return index;
+        
     }
 }
