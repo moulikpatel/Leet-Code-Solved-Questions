@@ -1,7 +1,7 @@
 class Solution {
     int getMin(int arr[],int n){
         int start=0,end=n-1;
-        while(start<end){
+        while(start<=end){
             if(arr[start]<=arr[end]){
                 return start;
             }
@@ -13,7 +13,7 @@ class Solution {
                 end=mid;
             }
         }
-        return start;
+        return -1;
     }
     int binarySearch(int arr[],int start,int end, int n,int t){
         while(start<=end){
