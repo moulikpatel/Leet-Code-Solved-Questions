@@ -32,14 +32,14 @@ class Solution {
     }
     public int search(int[] nums, int target) {
         int n=nums.length;
-        if(n==1){
-            if(nums[0]==target){
-                return 0;
-            }
-            else{
-                return -1;
-            }
-        }
+        // if(n==1){
+        //     if(nums[0]==target){
+        //         return 0;
+        //     }
+        //     else{
+        //         return -1;
+        //     }
+        // }
         int minElement=getMin(nums,n);
         int index=-1;
         if(minElement==0){
